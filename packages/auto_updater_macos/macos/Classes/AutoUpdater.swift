@@ -40,7 +40,7 @@ extension SUAppcastItem {
 }
 
 public class AutoUpdater: NSObject, SPUUpdaterDelegate {
-    var _userDriver: SPUStandardUserDriver?
+    var _userDriver: SPUUserDriver?
     var _updater: SPUUpdater?
     var feedURL: URL?
     public var onEvent:((String, NSDictionary) -> Void)?
@@ -49,7 +49,7 @@ public class AutoUpdater: NSObject, SPUUpdaterDelegate {
         super.init()
         let hostBundle: Bundle = Bundle.main
         
-        _userDriver = SPUStandardUserDriver(hostBundle: hostBundle, delegate: nil)
+        _userDriver = SilentUserDriver()
         _updater = SPUUpdater(
             hostBundle: hostBundle,
             applicationBundle: hostBundle,
